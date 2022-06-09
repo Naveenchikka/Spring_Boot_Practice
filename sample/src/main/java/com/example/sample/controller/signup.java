@@ -1,5 +1,7 @@
 package com.example.sample.controller;
 
+import com.example.sample.dto.ResponseDto;
+import com.example.sample.dto.signUpDTO;
 import com.example.sample.model.Person;
 import com.example.sample.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,22 +17,8 @@ public class signup {
   @CrossOrigin(origins = "http://localhost:4200")
   @RequestMapping(value = "/signUp", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = {
     RequestMethod.POST})
-  public boolean signUp(@RequestBody Person person) throws Exception {
+  public ResponseDto signUp(@RequestBody signUpDTO signDTO) throws Exception {
 
-    String signupError = null;
-
-    String name = person.getUsername();
-    String pwd = person.getPassword();
-    System.out.println("name = " + name);
-
-    if (!userService.isUsernameAvailable(person.getUsername())) {
-      signupError = "The username already exists.";
-    }
-
-    if (signupError == null) {
-      userService.createUser(person);
-      return true;
-    }
-    return false;
+    return userService.createUser(signDTO);
   }
 }
