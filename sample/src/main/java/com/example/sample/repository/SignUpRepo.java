@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface SignUpRepo extends JpaRepository<Person, Integer> {
 
-  @Query("Select u from Person u where u.userName=:username and u.password=:password")
+  @Query("Select u from Person u where u.email=:username and u.password=:password")
   Person findByUserName(@Param("username") String usn, @Param("password") String pwd);
 
-  @Query("Select u from Person u where u.userName=:username")
-  Person findByUserName(@Param("username") String usn);
+  @Query("Select u from Person u where u.email=:username")
+  Person findByEmail(@Param("username") String usn);
 
 //  @Modifying
 //  @Query("insert into Person (name,password,firstname,lastname) select :userName,:pwd :fName :lName from Person")

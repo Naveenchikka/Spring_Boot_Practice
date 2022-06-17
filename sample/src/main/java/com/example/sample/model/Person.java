@@ -3,29 +3,35 @@ package com.example.sample.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Person")
+@Table(name = "NEW_TABLE")
 public class Person {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name="USER_ID")
   private Integer userId;
-  @Column(name="USER_NAME")
-  private String userName;
+
+  @Column(name="USER_MAIL")
+  private String email;
+
   @Column(name="PASSWORD")
   private String password;
-  @Column(name="FIRST_NAME")
+
+  @Column(name="FIRSTNAME")
   private String firstName;
-  @Column(name="LAST_NAME")
+
+  @Column(name="LASTNAME")
   private String lastName;
+
+//  @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "AuthenticationToken")
+//  private Person user;
 
   public Person()
   {
 
   }
 
-  public Person(String username, String password, String firstName, String lastName) {
-    this.userId = userId;
-    this.userName = username;
+  public Person(String email, String password, String firstName, String lastName) {
+    this.email = email;
     this.password = password;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -39,12 +45,12 @@ public class Person {
     this.userId = userId;
   }
 
-  public String getUsername() {
-    return userName;
+  public String getEmail() {
+    return email;
   }
 
-  public void setUsername(String username) {
-    this.userName = username;
+  public void setEmail(String email) {
+    this.email = email;
   }
 
   public String getPassword() {
@@ -73,7 +79,7 @@ public class Person {
 
   @Override
   public String toString() {
-    return "User [id=" + userId + ", user_name=" + userName + ", user_fname=" + firstName + ", user_lname=" + lastName + ", user_pass=" + password+"]";
+    return "User [id=" + userId + ", user_email=" + email + ", user_fname=" + firstName + ", user_lname=" + lastName + ", user_pass=" + password+"]";
   }
 
 }
